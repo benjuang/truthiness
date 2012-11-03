@@ -1,0 +1,29 @@
+<h1>Listing references</h1>
+
+<table>
+  <tr>
+    <th>Issue</th>
+    <th>Link title</th>
+    <th>Link url</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @references.each do |reference| %>
+  <tr>
+    <td><%= reference.issue_id %></td>
+    <td><%= reference.link_title %></td>
+    <td><%= reference.link_url %></td>
+    <td><%= reference.description %></td>
+    <td><%= link_to 'Show', reference %></td>
+    <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
+    <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Reference', new_reference_path %>

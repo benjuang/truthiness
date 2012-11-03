@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  facebook_session_key: MyString
+  facebook_uid: MyString
+  persistence_token: MyString
+
+two:
+  facebook_session_key: MyString
+  facebook_uid: MyString
+  persistence_token: MyString

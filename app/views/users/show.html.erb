@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Facebook session key:</b>
+  <%= @user.facebook_session_key %>
+</p>
+
+<p>
+  <b>Facebook uid:</b>
+  <%= @user.facebook_uid %>
+</p>
+
+<p>
+  <b>Persistence token:</b>
+  <%= @user.persistence_token %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

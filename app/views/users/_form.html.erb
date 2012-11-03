@@ -1,0 +1,29 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :facebook_session_key %><br />
+    <%= f.text_field :facebook_session_key %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook_uid %><br />
+    <%= f.text_field :facebook_uid %>
+  </div>
+  <div class="field">
+    <%= f.label :persistence_token %><br />
+    <%= f.text_field :persistence_token %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
