@@ -1,3 +1,11 @@
+#
+# CREATE DATABASE truthiness_development;
+# CREATE DATABASE truthiness_test;
+# 
+# CREATE USER truthiness WITH PASSWORD 'nothingbythetruth';
+# GRANT ALL PRIVILEGES ON DATABASE truthiness_development TO truthiness;
+# GRANT ALL PRIVILEGES ON DATABASE truthiness_test TO truthiness;
+
 # PostgreSQL. Versions 8.2 and up are supported.
 #
 # Install the pg driver:
@@ -18,7 +26,7 @@ development:
   database: truthiness_development
   pool: 5
   username: truthiness
-  password:
+  password: nothingbythetruth
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -44,7 +52,7 @@ test:
   database: truthiness_test
   pool: 5
   username: truthiness
-  password:
+  password: nothingbythetruth
 
 production:
   adapter: postgresql

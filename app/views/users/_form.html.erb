@@ -1,7 +1,69 @@
-<%= form_for(@user) do |f| %>
+<script type="text/javascript">
+function password_check(){
+  if ($('#user_facebook_uid').val() != ""){
+    return true;
+  }
+  $('#password_error').hide();
+  if ($('#user_password').val() == ""){
+    $('#password_required').show();
+    return false;
+  }
+  if ($('#user_password').val() != $('#password_verify').val()){
+    $('#password_error').show();
+    return false;
+  }
+  return true;
+}
+function fbConnected(){
+  FB.getLoginStatus(function(response) {
+    if (response.status == "connected") {
+      var success = $("#fb_success");
+      if (success.length == 0){
+        success = $("<div id='fb_success'>Facebook Connected!</div>");
+      }
+      $("#fb_connect").children().hide().after(success);
+      // the user is logged in and has authenticated your
+      // app, and response.authResponse supplies
+      // the user's ID, a valid access token, a signed
+      // request, and the time the access token 
+      // and signed request each expire
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+      FB.api("me", function(response){
+        $("#user_name").val(response.name);
+        $("#user_email").val(response.email);
+        $("#user_facebook_uid").val(response.id);
+        $("#fb_success").show();
+        $("#new_user").submit();
+      });
+    } else {
+      FB.Event.subscribe('auth.login', function(response) {
+        window.setTimeout("window.location.reload(true)",0);
+      });
+    }
+   });
+}
+function fbDisconnect(){
+  $("#user_facebook_uid").val('');
+  $("#fbid").html('');
+}
+</script>
+
+<center id="fb_connect">
+  <% if @user.facebook_uid.nil? or @user.facebook_uid.empty? then %>
+    <% fb_login({:scope=>'email'}) do %>fbConnected()<% end %>
+  <% else %>
+    Facebook User ID: <span id='fbid'><%= @user.facebook_uid %></span> <input type="button" class="btn" onclick="fbDisconnect()" value="Disconnect Facebook"/>
+  <% end %>
+</center>
+<br/>
+<div style="width:100%;text-align:center;color:#888;font-weight:bold;font-size:1.2em;"> - or - </div>
+<br/>
+<%= form_for(@user, :html=>{:onsubmit=>'return password_check()'}) do |f| %>
+  <%= f.hidden_field :facebook_uid %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <div id="error_explanation" class="flash_error">
+      <h2>Couldn't create a new user! We ran into the following <%= pluralize(@user.errors.count, "error") %> while trying to save:</h2>
 
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
@@ -10,20 +72,26 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :facebook_session_key %><br />
-    <%= f.text_field :facebook_session_key %>
+  <div id="password_required" class="flash_error" style="display:none;">Password can't be blank if you're not using Facebook Connect!</div>
+  <div id="password_error" class="flash_error" style="display:none;">Passwords do not match. Try again, please.</div>
+  <div class="field row-fluid">
+    <%= f.label :name, :class=>"offset2 span2" %>
+    <%= f.text_field :name, :class=>"span6", :placeholder=>"Your Name" %>
   </div>
-  <div class="field">
-    <%= f.label :facebook_uid %><br />
-    <%= f.text_field :facebook_uid %>
+  <div class="field row-fluid">
+    <%= f.label :email, :class=>"offset2 span2" %>
+    <%= f.text_field :email, :class=>"span6", :placeholder=>"For login purposes" %>
   </div>
-  <div class="field">
-    <%= f.label :persistence_token %><br />
-    <%= f.text_field :persistence_token %>
+  <div class="field row-fluid">
+    <%= f.label :password, :class=>"offset2 span2" %>
+    <%= f.password_field :password, :value => "", :size=>30, :class=>"span6" %><br />
+    <span class="offset3" style="font-size:smaller;font-style:italic">Please try to remember this. I probably won't have time to code a password reset page.</span>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field row-fluid">
+    <%= label_tag(:password_verify, "Password (again)", :class=>"offset2 span2") %>
+    <%= password_field_tag(:password_verify, "", :size=>30, :class=>"span6") %>
+  </div>
+  <div class="actions" style="text-align:center">
+    <%= f.submit (@submit_text.nil? ? "Sign Up!" : @submit_text), :class=>"btn" %>
   </div>
 <% end %>
