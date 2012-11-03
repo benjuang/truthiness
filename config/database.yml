@@ -15,9 +15,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: testapp_development
+  database: truthiness_development
   pool: 5
-  username: testapp
+  username: truthiness
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -41,15 +41,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: testapp_test
+  database: truthiness_test
   pool: 5
-  username: testapp
+  username: truthiness
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: testapp_production
+  database: truthiness_production
   pool: 5
-  username: testapp
+  username: truthiness
   password:
