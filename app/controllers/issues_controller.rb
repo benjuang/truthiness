@@ -3,6 +3,7 @@ class IssuesController < ApplicationController
   # GET /issues.json
   def index
     @issues = Issue.all
+    @default_issue = Issue.find(1);
 
     respond_to do |format|
       format.html # index.html.erb

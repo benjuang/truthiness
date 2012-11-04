@@ -1,27 +1,38 @@
-<h1>Listing issues</h1>
+<!-- image comes from http://www.flickr.com/photos/chiotsrun/3241741298/sizes/l/in/photostream/ -->
+<!-- Carousel
+================================================== -->
+<div id="myCarousel" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="<%= @default_issue.picture %>" height="250" alt="">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1><%= @default_issue.name %></h1>
+          <p class="lead"><%= @default_issue.description %></p>
+          <a class="btn btn-large btn-primary" href="#">Explore</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /.carousel -->
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Picture</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @issues.each do |issue| %>
-  <tr>
-    <td><%= issue.name %></td>
-    <td><%= issue.description %></td>
-    <td><%= issue.picture %></td>
-    <td><%= link_to 'Show', issue %></td>
-    <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
-    <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
 
-<br />
-
-<%= link_to 'New Issue', new_issue_path %>
+<div class="container marketing">
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <% @issues.each do |issue|
+      next if issue.id == @default_issue.id
+      %>
+      <div class="span4">
+        <img class="img-circle" width="180" height="180" src="<%= issue.picture %>">
+        <h2><%= issue.name %></h2>
+        <p><%= issue.description %></p>
+        <p><a class="btn" href="#"><%= link_to 'View details &raquo;', issue %></a></p>
+      </div><!-- /.span4 -->
+    <% end %>
+  </div><!-- /.row -->
+</div><!-- /.container -->
