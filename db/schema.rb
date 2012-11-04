@@ -26,8 +26,12 @@ ActiveRecord::Schema.define(:version => 20121104185300) do
     t.string   "name"
     t.string   "description"
     t.string   "picture"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "banner_image"
+    t.string   "heading"
+    t.text     "summary"
+    t.string   "splash_image"
   end
 
   create_table "references", :force => true do |t|
