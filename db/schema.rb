@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121103211252) do
+ActiveRecord::Schema.define(:version => 20121104191003) do
 
   create_table "articles", :force => true do |t|
     t.integer  "issue_id"
@@ -20,18 +20,23 @@ ActiveRecord::Schema.define(:version => 20121103211252) do
     t.text     "citations"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "summary"
   end
 
   create_table "issues", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "picture"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "banner_image"
+    t.string   "heading"
+    t.text     "summary"
+    t.string   "splash_image"
   end
 
   create_table "references", :force => true do |t|
-    t.integer  "issue_id"
+    t.integer  "article_id"
     t.string   "link_title"
     t.string   "link_url"
     t.text     "description"
