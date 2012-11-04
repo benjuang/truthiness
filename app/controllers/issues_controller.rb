@@ -1,4 +1,6 @@
 class IssuesController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :show]
+
   # GET /issues
   # GET /issues.json
   def index

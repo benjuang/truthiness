@@ -41,6 +41,40 @@ textarea {
   text-decoration: none;
 }
 
+#login {
+  position: absolute;
+  right: 0px;
+  background-color:rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-width: 0px 0px 6px 6px;
+  border-style: none none solid solid;
+  border-color: #FFF #FFF #EAEAEA #EAEAEA;
+  -moz-border-top-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  border-image: none;
+  -moz-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  z-index: 10;
+}
+#login a, #login a:visited, #login a:hover {
+  color: #000060;
+  text-decoration: underline;
+}
+#login a:hover {
+  background-color:rgba(255, 255, 255, 0.7);
+}
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
 /* footer */
 
 footer {

@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :show]
+  
   # GET /articles
   # GET /articles.json
   def index

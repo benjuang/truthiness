@@ -1,4 +1,6 @@
 class ReferencesController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :show]
+  
   # GET /references
   # GET /references.json
   def index

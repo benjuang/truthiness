@@ -4,15 +4,6 @@
 
 // @import custom;
 
-/* GLOBAL STYLES
--------------------------------------------------- */
-/* Padding below the footer and lighter body text */
-
-body {
-  padding-bottom: 40px;
-  color: #5a5a5a;
-}
-
 
 /* BOOTSTRAP OVERRIDES
 -------------------------------------------------- */
@@ -22,7 +13,7 @@ body {
    http://stackoverflow.com/questions/12501224/twitter-bootstrap-buttons-hover-style */
 .btn-primary {
   background-image: -webkit-linear-gradient(top, #00CC6A, #28BE13);
-  &:hover { background-color: #28BE13 }
+  
 }
 
 .btn-primary:hover,
@@ -30,7 +21,7 @@ body {
 .btn-primary.active,
 .btn-primary.disabled,
 .btn-primary[disabled] {
-  background-image: -webkit-linear-gradient(top, #00CC6A, #28BE13);
+  background-image: -webkit-linear-gradient(#00CC6A, #00CC6A, #28BE13);
 }
 
 
@@ -73,7 +64,7 @@ body {
   position: static;
   max-width: 550px;
   padding: 0 20px;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 .carousel-caption h1,
 .carousel-caption .lead {
@@ -81,6 +72,9 @@ body {
   line-height: 1.25;
   color: #000;
   text-shadow: 0 1px 1px rgba(0,0,0,.4);
+}
+.carousel-caption .lead {
+  font-size: 17px;
 }
 .carousel-caption .btn {
   margin-top: 10px;
