@@ -4,12 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+    redirect_back_or_default "/"
   end
 
   def login
@@ -19,7 +14,7 @@ class UsersController < ApplicationController
         @user_session = UserSession.new(current_facebook_user)
         if @user_session.save
           flash[:notice] = "Login successful!"
-          redirect_back_or_default(@user_session.user)
+          redirect_back_or_default "/"
           return
         end
       end
@@ -30,11 +25,17 @@ class UsersController < ApplicationController
       @user_session = UserSession.new(params[:user_session])
       if @user_session.save
         flash[:notice] = "Login successful!"
-        redirect_back_or_default(@user_session.user)
+        redirect_back_or_default "/"
       end
     else
       @user_session = UserSession.new
     end
+  end
+  
+  def logout
+    current_user_session.destroy
+    flash[:notice] = "Logout successful!"
+    redirect_back_or_default "/"
   end
 
   # GET /users/1

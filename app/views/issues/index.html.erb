@@ -9,7 +9,7 @@
         <div class="carousel-caption">
           <h1><%= @default_issue.name %></h1>
           <p class="lead"><%= @default_issue.description %></p>
-          <a class="btn btn-large btn-primary" href="#">Explore</a>
+          <%= link_to 'Explore', @default_issue, {class:'btn btn-large btn-primary'} %>
         </div>
       </div>
     </div>
