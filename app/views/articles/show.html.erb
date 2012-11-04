@@ -68,6 +68,10 @@
         <%= link_to @article.issue.name.html_safe, @article.issue %></h3>
     </div>
 
+    <div class="jumbotron">
+      <h1><%= @article.title %></h1>
+    </div>
+
     <%= @article.content.html_safe %>
 
     <%= @article.citations.html_safe %>
