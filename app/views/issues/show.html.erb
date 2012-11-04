@@ -60,10 +60,8 @@
       </div>
 
       <div class="jumbotron">
-        <!-- *** get the banner question -->
-        <h1><%= @issue.name %></h1>
-        <!-- *** get the summary -->
-        <p class="lead"><%= @issue.summary %></p>
+        <h1><%= @issue.heading %></h1>
+        <p class="lead"><%= @issue.description %></p>
       </div>
 
       <!-- *** get all articles associated with this issue;
