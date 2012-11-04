@@ -1,0 +1,73 @@
+<h3>Login</h3>
+
+<script type="text/javascript">
+function fbSeamless(){
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      // the user is logged in and has authenticated your
+      // app, and response.authResponse supplies
+      // the user's ID, a valid access token, a signed
+      // request, and the time the access token 
+      // and signed request each expire
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+    } else if (response.status === 'not_authorized') {
+      // the user is logged in to Facebook, 
+      // but has not authenticated your app
+    } else {
+      // the user isn't logged in to Facebook.
+    }
+   });
+}
+
+function fbConnected(){
+  FB.getLoginStatus(function(response) {
+    if (response.status == "connected") {
+      // the user is logged in and has authenticated your
+      // app, and response.authResponse supplies
+      // the user's ID, a valid access token, a signed
+      // request, and the time the access token 
+      // and signed request each expire
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+      window.setTimeout("window.location.reload(true)",0);
+    } else {
+      FB.Event.subscribe('auth.login', function(response) {
+        window.setTimeout("window.location.reload(true)",0);
+      });
+    }
+   });
+}
+</script>
+
+<% if current_facebook_user %>
+<% current_facebook_user.fetch %>
+  <%= "Welcome #{current_facebook_user.first_name} #{current_facebook_user.last_name}!" %> Looks like you've already connected to our Facebook application.  Since you're seeing this, most likely, you haven't made an account.  <a href="/new/">Click here to sign up.</a><br/>
+  <%= fb_logout_link("Logout of fb", request.url) %><br />
+<% else %>
+  <% fb_login({:scope=>'email'}) do %>fbConnected()<% end %>
+<% end %>
+
+<%= form_for @user_session, :url => '/login' do |f| %>
+  <% if @user_session.errors.any? %>
+    <div id="error_explanation" class="flash_error">
+      <h2><%= pluralize(@user_session.errors.count, "error") %> <%= (@user_session.errors.count > 1 ? "were" : "was") %> enountered while trying to validate your identity with the credentials provided.</h2>
+
+      <ul>
+      <% @user_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.label :email %><br />
+  <%= f.text_field :email %><br />
+  <br />
+  <%= f.label :password %><br />
+  <%= f.password_field :password %><br />
+  <br />
+  <!--<%= f.check_box :remember_me %><%= f.label :remember_me %><br />-->
+  <br />
+  <%= f.submit "Login", :class=>"btn" %>
+<% end %>

@@ -1,14 +1,51 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-  <title>Truthiness</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="Truthiness: Bringing truth to the masses">
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:title" content="Truthiness" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://truthiness.herokuapp.com/" />
+  <meta property="og:image" content="http://truthiness.herokuapp.com/images/logo.png" />
+  <meta property="og:site_name" content="Truthiness" />
+  <meta property="fb:admins" content="1906256" />
+  
+  <title>Truthiness<%= " | " if content_for? :title %><%= yield :title %></title>
+  <%= stylesheet_link_tag :all %>
+  <%= csrf_meta_tag %>
 </head>
 <body>
 
-<%= yield %>
+<!--[if lt IE 7]>
+    <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<div id="body" class="-fluid">
+
+  <%= yield %>
+
+</div>
+
+<%= fb_connect_async_js %>
+<%= javascript_include_tag :application %>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25913642-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 
 </body>
 </html>

@@ -37,3 +37,11 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'jquery-rails'
+
+gem 'authlogic'
+
+gem 'bcrypt-ruby'
+
+gem 'facebooker2'
