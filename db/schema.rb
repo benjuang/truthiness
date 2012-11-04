@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121104183943) do
+ActiveRecord::Schema.define(:version => 20121104185300) do
 
   create_table "articles", :force => true do |t|
     t.integer  "issue_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20121104183943) do
   end
 
   create_table "references", :force => true do |t|
-    t.integer  "issue_id"
+    t.integer  "article_id"
     t.string   "link_title"
     t.string   "link_url"
     t.text     "description"
