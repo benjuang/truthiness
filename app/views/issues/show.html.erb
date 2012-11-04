@@ -1,18 +1,36 @@
-<p>
-  <b>Name:</b>
-  <%= @issue.name %>
-</p>
+<div class="clearfix"></div>
+<div style=""
+    <div class="container-narrow">
+      <div class="masthead">
+        <!-- This is a link back to the home page -->
+        <h3 class="muted"><a href="/">&lt;&nbsp; More Truthiness</a></h3>
+      </div>
 
-<p>
-  <b>Description:</b>
-  <%= @issue.description %>
-</p>
+      <div class="banner">
+        <img src="<%= @issue.banner_image %>" height="250" alt="">
+      </div>
 
-<p>
-  <b>Picture:</b>
-  <%= @issue.picture %>
-</p>
+      <div class="jumbotron">
+        <!-- *** get the banner question -->
+        <h1><%= @issue.name %></h1>
+        <!-- *** get the summary -->
+        <p class="lead"><%= @issue.summary %></p>
+      </div>
 
+      <!-- *** get all articles associated with this issue;
+           display the title and the summary here -->
+      <div class="row-fluid marketing">
+        <div class="span6">
+          <% @issue.articles.each do |article| %>
+          <h4><%= article.title.html_safe unless article.summary.nil? %></h4>
+          <p><%= article.summary.html_safe unless article.summary.nil? %>
+             <%= link_to "Learn More", article %></p>
+        <% end %>
 
-<%= link_to 'Edit', edit_issue_path(@issue) %> |
-<%= link_to 'Back', issues_path %>
+        <div class="span6">
+          <!-- *** get image -->
+          <img src="<%= @issue.splash_image %>"
+               style="float: right" />
+        </div>
+      </div>
+    </div>
