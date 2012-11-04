@@ -31,7 +31,7 @@
         <img class="img-circle" width="180" height="180" src="<%= issue.picture %>">
         <h2><%= issue.name %></h2>
         <p><%= issue.description %></p>
-        <p><a class="btn" href="#"><%= link_to 'View details &raquo;', issue %></a></p>
+        <p><%= link_to 'View details &raquo;'.html_safe, issue, {class:'btn'} %></p>
       </div><!-- /.span4 -->
     <% end %>
   </div><!-- /.row -->
