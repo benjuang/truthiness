@@ -24,6 +24,7 @@
   
   <title>Truthiness<%= " | " if content_for? :title %><%= yield :title %></title>
   <%= stylesheet_link_tag :application %>
+  <%= javascript_include_tag :application %>
   <%= csrf_meta_tag %>
 
 
@@ -67,7 +68,6 @@
 </div>
 
 <%= fb_connect_async_js %>
-<%= javascript_include_tag :application %>
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-25913642-1']);
