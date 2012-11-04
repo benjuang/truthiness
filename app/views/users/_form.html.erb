@@ -63,11 +63,11 @@ function fbDisconnect(){
   <%= f.hidden_field :facebook_uid %>
   <% if @user.errors.any? %>
     <div id="error_explanation" class="flash_error">
-      <h2>Couldn't create a new user! We ran into the following <%= pluralize(@user.errors.count, "error") %> while trying to save:</h2>
+      <h2>Couldn't create a new user! We ran into the following <%= pluralize(@user.errors.full_messages.uniq.count, "error") %> while trying to save:</h2>
 
       <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <% @user.errors.full_messages.uniq.each do |msg| %>
+        <li><%= msg %><%= " (Maybe you're already connected on Facebook?  If so, go ahead and <a href='/login'>Login</a>)".html_safe if msg == "Email has already been taken" %></li>
       <% end %>
       </ul>
     </div>

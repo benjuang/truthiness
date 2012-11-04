@@ -3,3 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // @import custom;
+
+.inputform {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  background-color:#EEE;
+  padding: 10px;
+  border: 6px solid #EAEAEA;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  z-index: 10;
+}
+
+.inputform h1 {
+  text-align: center;
+}
