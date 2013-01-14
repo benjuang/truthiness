@@ -45,7 +45,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    facebooker2 (0.0.12)
+    facebooker2 (0.0.17)
       mogli (>= 0.0.12)
       ruby-hmac
     hashie (1.0.0)
